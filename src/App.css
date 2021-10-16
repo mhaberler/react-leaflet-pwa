@@ -1,0 +1,71 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+#map {
+  width: 90vw;
+  height: 75vh;
+  border-radius: .7rem;
+}
+
+.controls {
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  outline: none;
+  border-radius: 50%;
+  margin-left: .7rem;
+  padding: .5rem;
+  font-size: medium;  
+  cursor: pointer;
+}
+
+.location {
+  background-color: rgb(145, 248, 86);
+}
+
+.remove {
+  background-color: rgb(162, 223, 247);
+}
+
+.cache {
+  background-color: rgb(237, 162, 247);
+}
+
+.input-label {
+  color: white;
+  background-color: purple;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  padding: .3rem .5rem;
+  font-size: .9rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(14, 92, 165);
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: .5rem;
+}
+
+input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
