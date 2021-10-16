@@ -1,7 +1,7 @@
 import L from 'leaflet'
 
 export const baseMaps = {
-    "Mapa raster IGN - Spain": L.tileLayer.wms('http://www.ign.es/wms-inspire/mapa-raster', {
+    "Mapa raster IGN - Spain": L.tileLayer.wms('https://www.ign.es/wms-inspire/mapa-raster', {
         layers: 'mtn_rasterizado',
         crossOrigin: true,
         format: 'image/png',
@@ -9,7 +9,7 @@ export const baseMaps = {
         continuousWorld: true,
         attribution: '© <a href="http://www.ign.es/ign/main/index.do" target="_blank">Instituto Geográfico Nacional de España</a> contributors'
     }),
-    "Ortoimagen PNOA - Spain": L.tileLayer.wms('http://www.ign.es/wms-inspire/pnoa-ma', {
+    "Ortoimagen PNOA - Spain": L.tileLayer.wms('https://www.ign.es/wms-inspire/pnoa-ma', {
         layers: 'OI.OrthoimageCoverage',
         crossOrigin: true,
         format: 'image/png',
