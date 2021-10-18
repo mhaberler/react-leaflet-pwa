@@ -31,10 +31,10 @@ export default defineConfig({
         'markers/marker-shadow.png'
       ],  
       manifest: {
-        name: 'App Leaflet example with React js',
-        short_name: 'App Leaflet React',
-        description: 'App Leaflet example with React js',
-        theme_color: '#ffffff',
+        name: 'App GPS con Leaflet y React js',
+        short_name: 'Leaflet React App',
+        description: 'App GPS con Leaflet y React js',
+        theme_color: '#088C2F',
         icons: [
           {
             src: 'icons/android-chrome-192x192.png',

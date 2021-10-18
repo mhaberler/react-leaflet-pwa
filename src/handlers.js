@@ -32,15 +32,15 @@ export function openFile(e) {
     const input = e.target;
     const reader = new FileReader()
     reader.onload = () => {
-        const data = reader.result;
+        const data = reader.result
         displayTrack(data)
-        // console.log(data)
     }
-    // if (input.files[0]) reader.readAsText(input.files[0])
+    
     reader.readAsText(input.files[0])
 }
 
 export function displayTrack(data) {
+    let name
     gpxLoaded = new L.GPX(data, {
         async: true,
         marker_options: {
@@ -53,16 +53,20 @@ export function displayTrack(data) {
         }
     }).on('loaded', (e) => {
         const gpx = e.target
-        // this.name = `${gpx.get_name()}`;
-        // this.distance = `${Math.round((gpx.get_distance() / 1000) * 100) / 100} km`;
-        // this.maxElevation = `${Math.round(gpx.get_elevation_max() * 100) / 100} m`;
-        // const hours = Math.round((gpx.get_total_time() / 3600000) * 100) / 100;
-        // const minutes = Math.ceil((hours - Math.floor(hours)) * 60);
-        // this.time = `${Math.floor(hours)} horas y ${minutes} minutos`;
+        const info = {}
+        info.name = `${gpx.get_name()}`
+        info.distance = `${Math.round((gpx.get_distance() / 1000) * 100) / 100} km`
+        info.maxElevation = `${Math.round(gpx.get_elevation_max() * 100) / 100} m`
+        const hours = Math.round((gpx.get_total_time() / 3600000) * 100) / 100
+        const minutes = Math.ceil((hours - Math.floor(hours)) * 60)
+        info.time = `${Math.floor(hours)} horas y ${minutes} minutos`
 
-        mymap.fitBounds(gpx.getBounds());
+        window.localStorage.setItem('info', JSON.stringify(info))
+
+        mymap.fitBounds(e.target.getBounds())
     }).addTo(mymap)
-
+    
+    gpxLoaded.name = name
     window.localStorage.setItem('gpx', data)
 }
 
@@ -72,10 +76,7 @@ export function removeTrack() {
         gpxLoaded = null;
     }
 
-    // this.name = '';
-    // this.distance = '';
-    // this.maxElevation = '';
-    // this.time = '';
+    window.localStorage.removeItem('info')
     window.localStorage.removeItem('gpx')
 }
 
@@ -120,7 +121,7 @@ function initializeLocator() {
             watch: true,
             timeout: 5000
         })
-    
+
         mymap.on('locationfound', onLocationFound)
     }
 }
@@ -128,7 +129,7 @@ function initializeLocator() {
 export function removeCacheMap() {
 
     // this.showRemoveCache = false;
-    
+
     if ('caches' in window) {
         caches.delete('cache-map')
             .then((bool) => {

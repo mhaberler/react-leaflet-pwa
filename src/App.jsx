@@ -1,62 +1,86 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   checkLocation,
   displayTrack,
   initMap,
   openFile,
-  removeCacheMap,
-  removeTrack } from './handlers'
+  removeTrack
+} from './handlers'
 import './App.css'
-
-const locationClasses = 'btn location'
-const removeClasses = 'btn remove'
-const cacheClasses = 'btn cache'
+import { MdLocationOn } from 'react-icons/md'
+import { FaPaperclip } from 'react-icons/fa'
+import { MdCached } from 'react-icons/md'
+import { MdDelete } from 'react-icons/md'
+import { MdInfo } from 'react-icons/md'
+import { Modal } from './components/Modal'
 
 export default function App() {
 
   const [location, setLocation] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [removeCache, setRemoveCache] = useState(false)
+  const inputRef = useRef()
+
+  const resetFileUploader = () => inputRef.current.value = ''
+
 
   useEffect(() => {
     checkLocation()
   }, [location])
 
-  useEffect(() => {    
+  useEffect(() => {
     initMap()
     // Redraw the track if it exists in LocalStorage when starting the app
-    const data = window.localStorage.getItem('gpx');
-    if (data && data.length !== 0) {
-      displayTrack(data)
-    }
+    const data = window.localStorage.getItem('gpx')
+    data ? displayTrack(data) : null
   }, [])
 
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Ejemplo de App con Leaflet y React js</h3>
+        <h3>App GPS con Leaflet y React js</h3>
         <div className="controls">
-          <label className='input-label' htmlFor="input-track">Seleccionar Track…</label>
+          <label className='input-label' htmlFor="input-track"><FaPaperclip /></label>
+          <button
+            title='Get Info'
+            onClick={() => {
+              setShowModal(!showModal)
+              setRemoveCache(false)
+            }}
+            className='btn info'>
+            <MdInfo />
+          </button>
           <button
             title='Start Geolocation'
             onClick={() => setLocation(!location)}
-            className={locationClasses}>
-              📌
+            className='btn location'>
+            <MdLocationOn />
           </button>
           <button
             title='Remove the track from the map'
             onClick={removeTrack}
-            className={removeClasses}>
-              🗑️
+            className='btn remove'>
+            <MdDelete />
           </button>
           <button
             title='Remove Map Cache'
-            onClick={removeCacheMap}
-            className={cacheClasses}>
-              🗺️
+            onClick={() => {
+              setShowModal(!showModal)
+              setRemoveCache(true)
+            }}
+            className='btn cache'>
+            <MdCached />
           </button>
+          <input ref={inputRef} type="file" accept="application/gpx+xml" id="input-track" onClick={resetFileUploader} onChange={openFile} />
         </div>
-        <input type="file" accept="application/gpx+xml" id="input-track" onChange={openFile} />
         <div id="map"></div>
+        <Modal showModal={showModal} setShowModal={setShowModal} removeCache={removeCache} />
       </header>
     </div>
   )
 }
+
+/**
+ * SOBRE EL USO useRef. VER:
+ * https://www.youtube.com/watch?v=D2ElJVzriCk
+ */
