@@ -35,12 +35,11 @@ export function openFile(e) {
         const data = reader.result
         displayTrack(data)
     }
-    
+
     reader.readAsText(input.files[0])
 }
 
 export function displayTrack(data) {
-    let name
     gpxLoaded = new L.GPX(data, {
         async: true,
         marker_options: {
@@ -51,22 +50,25 @@ export function displayTrack(data) {
             endIconUrl: 'markers/pin-icon-end.png',
             shadowUrl: 'markers/pin-shadow.png'
         }
-    }).on('loaded', (e) => {
+    })
+
+    gpxLoaded.on('loaded', (e) => {
         const gpx = e.target
-        const info = {}
-        info.name = `${gpx.get_name()}`
-        info.distance = `${Math.round((gpx.get_distance() / 1000) * 100) / 100} km`
-        info.maxElevation = `${Math.round(gpx.get_elevation_max() * 100) / 100} m`
+        const infoTrack = {}
+        infoTrack.name = `${gpx.get_name()}`
+        infoTrack.distance = `${Math.round((gpx.get_distance() / 1000) * 100) / 100} km`
+        infoTrack.maxElevation = `${Math.round(gpx.get_elevation_max() * 100) / 100} m`
         const hours = Math.round((gpx.get_total_time() / 3600000) * 100) / 100
         const minutes = Math.ceil((hours - Math.floor(hours)) * 60)
-        info.time = `${Math.floor(hours)} horas y ${minutes} minutos`
+        infoTrack.time = `${Math.floor(hours)} horas y ${minutes} minutos`
 
-        window.localStorage.setItem('info', JSON.stringify(info))
+        window.localStorage.setItem('info', JSON.stringify(infoTrack))
 
-        mymap.fitBounds(e.target.getBounds())
-    }).addTo(mymap)
-    
-    gpxLoaded.name = name
+        mymap.fitBounds(gpx.getBounds())
+    })
+
+    gpxLoaded.addTo(mymap)
+
     window.localStorage.setItem('gpx', data)
 }
 

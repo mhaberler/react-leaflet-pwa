@@ -13,6 +13,7 @@ import { MdCached } from 'react-icons/md'
 import { MdDelete } from 'react-icons/md'
 import { MdInfo } from 'react-icons/md'
 import { Modal } from './components/Modal'
+import { ButtonCache, ButtonInfo, ButtonLocation, ButtonRemove, InputLabel } from './components/Buttons'
 
 export default function App() {
 
@@ -40,37 +41,26 @@ export default function App() {
       <header className="App-header">
         <h3>App GPS con Leaflet y React js</h3>
         <div className="controls">
-          <label className='input-label' htmlFor="input-track"><FaPaperclip /></label>
-          <button
+          <InputLabel htmlFor="input-track"><FaPaperclip /></ InputLabel>
+          <ButtonInfo
             title='Get Info'
             onClick={() => {
               setShowModal(!showModal)
               setRemoveCache(false)
-            }}
-            className='btn info'>
-            <MdInfo />
-          </button>
-          <button
+            }}><MdInfo /></ButtonInfo>
+          <ButtonLocation
             title='Start Geolocation'
-            onClick={() => setLocation(!location)}
-            className='btn location'>
-            <MdLocationOn />
-          </button>
-          <button
+            onClick={() => setLocation(!location)}><MdLocationOn /></ButtonLocation>
+          <ButtonRemove
             title='Remove the track from the map'
-            onClick={removeTrack}
-            className='btn remove'>
-            <MdDelete />
-          </button>
-          <button
+            onClick={removeTrack}><MdDelete /></ButtonRemove>
+          <ButtonCache
             title='Remove Map Cache'
             onClick={() => {
               setShowModal(!showModal)
               setRemoveCache(true)
-            }}
-            className='btn cache'>
-            <MdCached />
-          </button>
+            }}><MdCached /></ ButtonCache>
+
           <input ref={inputRef} type="file" accept="application/gpx+xml" id="input-track" onClick={resetFileUploader} onChange={openFile} />
         </div>
         <div id="map"></div>
@@ -83,4 +73,10 @@ export default function App() {
 /**
  * SOBRE EL USO useRef. VER:
  * https://www.youtube.com/watch?v=D2ElJVzriCk
+ *
+ * SOBRE LA CREACION DE SNIPPETS PARA REACT:
+ * https://levelup.gitconnected.com/use-code-snippets-in-vs-code-to-create-react-components-faster-56fe5327896c#:~:text=Step%201%3A%20Go%20to%20User,4%3A%20Write%20your%20code%20snippet!
+ *
+ * SOBRE EXPORTAR POR DEFAULT UNA CONSTANTE ARROW FUNCTION EN REACT:
+ * https://stackoverflow.com/questions/34676984/cannot-export-const-arrow-function
  */

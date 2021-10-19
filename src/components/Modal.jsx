@@ -90,6 +90,7 @@ const CacheContent = styled.div`
 `
 
 export const Modal = ({ showModal, setShowModal, removeCache }) => {
+  
   const info = JSON.parse(window.localStorage.getItem('info'))
 
   const modalRef = useRef()
