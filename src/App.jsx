@@ -49,6 +49,7 @@ export default function App() {
               setRemoveCache(false)
             }}><MdInfo /></ButtonInfo>
           <ButtonLocation
+            style={{ backgroundColor: !location ? 'greenyellow' : 'magenta' }}
             title='Start Geolocation'
             onClick={() => setLocation(!location)}><MdLocationOn /></ButtonLocation>
           <ButtonRemove

@@ -26,7 +26,7 @@ export const ButtonInfo = styled.button`
 
 export const ButtonLocation = styled.button`
     ${Button}
-    background-color: rgb(145, 248, 86);
+    /* background-color: rgb(145, 248, 86); */
     color: blue;
 `
 
