@@ -24,7 +24,7 @@ export default function App() {
 
   const resetFileUploader = () => inputRef.current.value = ''
 
-
+  // Aunque en principio se dispara el checkLocation al recargar la pagina, como este metdoo verifica que este cargado el mapa (y no lo esta hasta que se dispara el useEffect siguiente) no ocurre ningun cambio, solo se inicializa «location» a false
   useEffect(() => {
     checkLocation()
   }, [location])

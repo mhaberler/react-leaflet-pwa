@@ -19,30 +19,32 @@ const Button = css`
 `
 
 export const ButtonInfo = styled.button`
-    ${Button}
+    ${Button};
     background-color: #141414;
     color: gold;
 `
 
 export const ButtonLocation = styled.button`
-    ${Button}
+    ${Button};
     /* background-color: rgb(145, 248, 86); */
     color: blue;
 `
 
 export const ButtonRemove = styled.button`
-    ${Button}
+    ${Button};
     background-color: rgb(197, 197, 197);
     color: rgb(94, 13, 13);
 `
 
 export const ButtonCache = styled.button`
-    ${Button}
+    ${Button};
     background-color: rgb(61, 100, 105);
     color: whitesmoke;
 `
 export const InputLabel = styled.label`
-    ${Button}    
+    ${Button};    
+    width: 3rem;
+    height: 3rem;
     background-color: purple;
     color: white;
 `
