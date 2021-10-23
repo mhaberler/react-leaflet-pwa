@@ -31,8 +31,8 @@ export default defineConfig({
         'markers/marker-shadow.png'
       ],  
       manifest: {
-        name: 'App GPS con Leaflet y React js',
-        short_name: 'Leaflet React App',
+        name: 'Camina 🥾 con mi App GPS',
+        short_name: 'Leaflet React App-GPS',
         description: 'App GPS con Leaflet y React js',
         theme_color: '#088C2F',
         icons: [

@@ -39,7 +39,8 @@ export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>App GPS con Leaflet y React js</h3>
+        <h4>Camina 🥾 con mi App GPS</h4>
+        <p>(React js/Leaflet)</p>
         <div className="controls">
           <InputLabel htmlFor="input-track"><FaPaperclip /></ InputLabel>
           <ButtonInfo
