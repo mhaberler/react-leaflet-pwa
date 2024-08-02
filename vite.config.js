@@ -3,12 +3,12 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import mkcert from 'vite-plugin-mkcert'
 
-
+console.log("base:", process.env.NODE_ENV)
 export default defineConfig({
-  // base: '/leaflet-react-app/',
+
   base: process.env.NODE_ENV === 'production'
-          ? '/leaflet-react-app/' // prod
-          : '/', // dev
+          ? '/leaflet-react-pwa/' 
+          : '/', 
   plugins: [
     mkcert(),
     react(),
