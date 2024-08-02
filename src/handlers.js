@@ -10,9 +10,9 @@ export function initMap() {
     resetMarkerIcon()
     mymap = L.map('map', {
         layers: [
-            baseMaps['Mapa raster IGN - Spain'],
+            baseMaps['OpenStreetMap'],
         ]
-    }).fitBounds([[24.9300000311, -19.6], [46.0700000311, 5.6]])
+    }).fitBounds([[46,8], [48,16]])
     L.control.layers(baseMaps).addTo(mymap)
     L.control.scale({ options: { position: 'bottomleft', metric: true } }).addTo(mymap)
 }
@@ -100,16 +100,16 @@ export function checkLocation() {
 function onLocationFound(e) {
 
     let radius = e.accuracy / 2;
-    if (mymap.hasLayer(circle) && mymap.hasLayer(marker)) {
+    if (circle && marker && mymap.hasLayer(circle) && mymap.hasLayer(marker)) {
         mymap.removeLayer(circle);
         mymap.removeLayer(marker);
     }
 
     marker = new L.Marker(e.latlng, { draggable: true });
-    circle = new L.circle(e.latlng, radius);
-    circle
-        .bindPopup(`Estás a menos de ${radius} metros de este punto`)
-        .openPopup();
+    circle = new L.Circle(e.latlng, {radius: radius});
+    // circle
+    //     .bindPopup(`Estás a menos de ${radius} metros de este punto`)
+    //     .openPopup();
 
     mymap.addLayer(marker);
     mymap.addLayer(circle);

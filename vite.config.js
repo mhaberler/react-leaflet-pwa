@@ -1,17 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import mkcert from 'vite-plugin-mkcert'
 
-/* , 'img/logo.svg' */
 
-// https://vitejs.dev/config/
-// https://stackoverflow.com/questions/68380194/tranform-vue-config-js-to-vite-config-js-build-path
 export default defineConfig({
   // base: '/leaflet-react-app/',
   base: process.env.NODE_ENV === 'production'
           ? '/leaflet-react-app/' // prod
           : '/', // dev
   plugins: [
+    mkcert(),
     react(),
     VitePWA({
       strategies: 'injectManifest',
