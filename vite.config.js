@@ -13,7 +13,7 @@ export default defineConfig({
     mkcert(),
     react(),
     VitePWA({
-      strategies: 'injectManifest',
+      // strategies: 'injectManifest',
       srcDir: 'src',
       filename: 'sw.js',
       registerType: 'autoUpdate',
